@@ -655,19 +655,42 @@ document.addEventListener('click', e => {
 })
 
 $<HTMLButtonElement>('#reset').addEventListener('click', () => {
-  for (const c of chips) c.checked = false
-  for (const i of chapterMenu.querySelectorAll<HTMLInputElement>('input')) i.checked = false
-  state.diffs.clear();
-  state.chapters.clear();
-  state.sort = null
-  state.expanded = null
-  qInput.value = ''
+  applyDefaults();
+  // for (const c of chips) c.checked = false
+  // for (const i of chapterMenu.querySelectorAll<HTMLInputElement>('input')) i.checked = false
+  // state.diffs.clear();
+  // state.chapters.clear();
+  // state.sort = null
+  // state.expanded = null
+  // qInput.value = ''
+  // state.q = ''
+  // applyLevel(LV_MIN, LV_MAX, 'lo')
+  // updateChapterLabel()
+  // saveSettings()
+  // render()
+})
+
+function applyDefaults() {
   state.q = ''
-  applyLevel(LV_MIN, LV_MAX, 'lo')
+  state.diffs = new Set(DIFFS.filter(d => DEFAULTS.diffs.includes(d)))
+  state.chapters = new Set(chapters.filter(c => DEFAULTS.chapters.includes(c)))
+  state.min = DEFAULTS.min
+  state.max = DEFAULTS.max
+  state.sort = DEFAULTS.sort
+  state.expanded = null
+  hidden.clear()
+  for (const k of DEFAULTS.hidden) hidden.add(k)
+
+  qInput.value = ''
+  for (const c of chips) c.checked = state.diffs.has(c.value as Diff)
+  for (const i of chapterMenu.querySelectorAll<HTMLInputElement>('input')) i.checked = state.chapters.has(i.value)
+  for (const i of document.querySelectorAll<HTMLInputElement>('#col-menu input')) i.checked = !hidden.has(i.value as ColKey)
+  applyLevel(state.min ?? LV_MIN, state.max ?? LV_MAX, 'lo')
   updateChapterLabel()
+  renderHead()
   saveSettings()
   render()
-})
+}
 
 applyLevel(LV_MIN, LV_MAX, 'lo')
 updateChapterLabel()
