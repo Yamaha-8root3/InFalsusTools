@@ -1,0 +1,21 @@
+.nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 500px);
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+.nav-grid a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    border: 2px solid currentColor;
+    border-radius: 12px;
+    transition: transform 0.1s;
+}
+.nav-grid a:hover { transform: scale(1.03); }
+.nav-grid a:focus-visible { outline: 3px solid; outline-offset: 2px; }

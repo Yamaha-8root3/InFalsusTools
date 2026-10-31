@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>InFalsus Rating</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="rating.css">
+</head>
+<body>
+<main class="wrap">
+  <div id="summery">
+    <div id="rating">aa</div>
+  </div>
+
+  <section class="toolbar" aria-label="Search and format">
+    <div class="search">
+      <input id="q" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn" id="reset" type="button">Reset</button>
+    </div>
+    <div class="filters">
+      <fieldset id="f-diff"><legend>Difficulty</legend></fieldset>
+      <details class="menu" id="chapter-menu">
+        <summary>Chapter</summary>
+        <div class="menu-body"></div>
+      </details>
+      <div class="range"><div class="range">
+        <span>Level</span>
+        <input id="lv-min" type="number" aria-label="レベル下限">
+        <div class="dual" id="lv-dual">
+          <input id="lv-min-r" type="range" aria-label="レベル下限スライダー">
+          <input id="lv-max-r" type="range" aria-label="レベル上限スライダー">
+        </div>
+        <input id="lv-max" type="number" aria-label="レベル上限">
+      </div></div>
+      <details class="menu" id="col-menu">
+        <summary>Columns</summary>
+        <div class="menu-body"></div>
+      </details>
+    </div>
+    <div class="sortbar">
+      <select id="sort-key" aria-label="Sort by"></select>
+      <button class="btn" id="sort-dir" type="button" aria-label="Sort direction">▲</button>
+    </div>
+  </section>
+
+  <p class="count" id="count" aria-live="polite"></p>
+
+  <div class="table-wrap">
+    <table id="songs">
+      <thead>
+      <tr id="head"></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <p class="empty" id="empty" hidden>条件に一致する曲がありません。検索語か絞り込みを変更してください。</p>
+  </div>
+</main>
+<script type="module" src="./rating.ts"></script>
+</body>
+</html>
